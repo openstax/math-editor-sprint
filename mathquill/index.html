@@ -11,34 +11,11 @@
 
   <script type="text/javascript" src="../bower_components/jQuery/jquery.min.js"></script>
   <script type="text/javascript" src="../bower_components/MathQuill/build/mathquill.js"></script>
+  <script type="text/javascript" src="editor.js"></script>
 </head>
 <body>
   <div class="contener">
-    <span>Editor:</span> <span contenteditable="true" id="source">\sqrt 2</span> <span id="editor">\sqrt 2</span>
-
-    <script>
-      var MQ = MathQuill.getInterface(2);
-
-      var editorSpan = document.getElementById('editor');
-
-      var answerMathField = MQ.MathField(editorSpan, {
-        handlers: {
-          edit: function() {
-            var enteredMath = answerMathField.latex(); // Get entered math in LaTeX format
-            checkAnswer(enteredMath);
-          },
-          restrictMismatchedBrackets: true
-        }
-      });
-
-      $("#source").keydown(function( event ) {
-        var charCode = event.keyCode || event.which;
-        var charStr = String.fromCharCode(charCode);
-        answerMathField.write(charStr);
-      });
-      //answerMathField.latex('2^{\\frac{3}{2}}');
-
-    </script>
+    <span>Source:</span> <span contenteditable="true" id="source">\sqrt 2</span> <button id="to_source"><<</button> <button id="to_editor">>></button> <span>Editor:</span> <span id="editor">\sqrt 2</span>
   </div>
 </body>
 </html>
