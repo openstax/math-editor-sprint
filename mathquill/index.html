@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta name="viewport" content="width=624">
+
+  <title>MathQuill Demo</title>
+
+  <link rel="stylesheet" type="text/css" href="../bower_components/MathQuill/build/mathquill.css">
+  <link rel="stylesheet" type="text/css" href="css.css">
+
+  <script type="text/javascript" src="../bower_components/jQuery/jquery.min.js"></script>
+  <script type="text/javascript" src="../bower_components/MathQuill/build/mathquill.js"></script>
+</head>
+<body>
+  <div class="contener">
+    <span>Editor:</span> <span contenteditable="true" id="source">\sqrt 2</span> <span id="editor">\sqrt 2</span>
+
+    <script>
+      var MQ = MathQuill.getInterface(2);
+
+      var editorSpan = document.getElementById('editor');
+
+      var answerMathField = MQ.MathField(editorSpan, {
+        handlers: {
+          edit: function() {
+            var enteredMath = answerMathField.latex(); // Get entered math in LaTeX format
+            checkAnswer(enteredMath);
+          },
+          restrictMismatchedBrackets: true
+        }
+      });
+
+      $("#source").keydown(function( event ) {
+        var charCode = event.keyCode || event.which;
+        var charStr = String.fromCharCode(charCode);
+        answerMathField.write(charStr);
+      });
+      //answerMathField.latex('2^{\\frac{3}{2}}');
+
+    </script>
+  </div>
+</body>
+</html>
