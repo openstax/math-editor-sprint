@@ -4,12 +4,13 @@
   <meta charset="UTF-8">
   <title>UI</title>
 
-  <link rel="stylesheet" href="mes-ui.css" media="screen" title="no title">
-  <link rel="stylesheet" href="../bower_components/MathQuill/build/mathquill.css" media="screen" title="no title">
+  <link rel="stylesheet" href="mathquill.css" media="screen">
+  <link rel="stylesheet" href="mes-ui.css" media="screen">
 
   <script type="text/javascript" src="../bower_components/MathJax/MathJax.js?config=TeX-MML-AM_CHTML" ></script>
   <script type="text/javascript" src="../bower_components/jQuery/jquery.min.js" ></script>
-  <script type="text/javascript" src="../bower_components/MathQuill/build/mathquill.min.js" ></script>
+  <script type="text/javascript" src="mathquill.min.js" ></script>
+  <script type="text/javascript" src="render.js" ></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       showProcessingMessages: false,
@@ -19,31 +20,31 @@
 </head>
 <body>
 
-    <div id="eq">$ \binom{n}{k} = \frac{n!}{k!(n-k)!} $</div>
+    <div id="eq">y = a + b * c^2</div>
 
     <div data-mesui-modal="m1" class="mes-ui off" data-tip="left">
       <div class="mes-ui__tabs">
-        <button data-mesui-btn="easy" class="mes-ui__tab">Easy</button> / <button data-mesui-btn="advance" class="mes-ui__tab">Advance</button>
+        <button data-mesui-btn="easy" class="mes-ui__tab active">Easy</button> / <button data-mesui-btn="advance" class="mes-ui__tab">Advance</button>
       </div>
       <div class="mes-ui__simple">
         <div class="mes-ui__math-quil">
-          \binom{n}{k} = \frac{n!}{k!(n-k)!} + \binom{n}{k} = \frac{n!}{k!(n-k)!}  + \binom{n}{k} = \frac{n!}{k!(n-k)!}
+
         </div>
         <div class="mes-ui__help">
           <button data-mesui-btn="help" class="mes-ui__tab">Help</button>
         </div>
       </div>
       <div class="mes-ui__advance off">
-        <span contenteditable="true">LaTeX goes here!</span>
+        <span class="mes-ui__latex" contenteditable="true"></span>
       </div>
     </div>
 
     <script src="mes-ui.js" charset="utf-8"></script>
 
     <script type="text/javascript">
-      MathUI.init();
 
-      const eq = document.getElementById('eq');
+    const eq = document.getElementById('eq');
+      MathUI.init(eq);
       eq.onclick = function () {
         MathUI.show();
       }
