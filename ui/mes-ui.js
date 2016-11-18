@@ -1,6 +1,6 @@
 const MathUI = (function() {
 
-  let mesui, advanceContent, easyContent, buttons;
+  let mesui, advanceContent, latexContent, latexSource, mathquilContent, easyContent, buttons, mathQuillField;
 
   const buttonHandlers = {
 
@@ -8,12 +8,15 @@ const MathUI = (function() {
         button.classList.toggle('active');
         easyContent.classList.toggle('off');
         advanceContent.classList.toggle('off');
+        latexSource = mathQuillField.latex();
+        latexContent.innerHTML = latexSource;
       },
 
       advance (button) {
         button.classList.toggle('active');
         easyContent.classList.toggle('off');
         advanceContent.classList.toggle('off');
+        mathQuillField.latex(latexContent.innerHTML);
       },
 
       help (button) {
@@ -30,11 +33,24 @@ const MathUI = (function() {
   }
 
   function init() {
+    const MQ = MathQuill.getInterface(2);
     mesui = document.querySelector('div[data-mesui-modal]');
     mesui.addEventListener('click', navigationHandler);
     easyContent = mesui.querySelector('.mes-ui__advance')
     advanceContent = mesui.querySelector('.mes-ui__simple')
+    latexContent = mesui.querySelector('.mes-ui__advance span')
+    mathquilContent = mesui.querySelector('.mes-ui__math-quil')
     buttons = Array.from(mesui.querySelectorAll('button[data-mesui-btn]'));
+
+    mathQuillField = MQ.MathField(mathquilContent, {
+      handlers: {
+        edit: function() {
+          let enteredMath = mathQuillField.latex();
+        },
+        restrictMismatchedBrackets: true,
+        spacesBehavesLikeTab: true
+      }
+    });
   }
 
   function show() {

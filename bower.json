@@ -18,6 +18,8 @@
     "tests"
   ],
   "dependencies": {
-    "MathJax": "components/MathJax#^2.6.0"
+    "MathJax": "components/MathJax#^2.6.0",
+    "MathQuill": "https://github.com/mathquill/mathquill.git",
+    "jQuery": "components/jQuery#^3.1.1"
   }
 }

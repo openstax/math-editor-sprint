@@ -5,8 +5,11 @@
   <title>UI</title>
 
   <link rel="stylesheet" href="mes-ui.css" media="screen" title="no title">
+  <link rel="stylesheet" href="../bower_components/MathQuill/build/mathquill.css" media="screen" title="no title">
 
   <script type="text/javascript" src="../bower_components/MathJax/MathJax.js?config=TeX-MML-AM_CHTML" ></script>
+  <script type="text/javascript" src="../bower_components/jQuery/jquery.min.js" ></script>
+  <script type="text/javascript" src="../bower_components/MathQuill/build/mathquill.min.js" ></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       showProcessingMessages: false,
@@ -24,7 +27,7 @@
       </div>
       <div class="mes-ui__simple">
         <div class="mes-ui__math-quil">
-          $ \binom{n}{k} = \frac{n!}{k!(n-k)!} + \binom{n}{k} = \frac{n!}{k!(n-k)!}  + \binom{n}{k} = \frac{n!}{k!(n-k)!}  $
+          \binom{n}{k} = \frac{n!}{k!(n-k)!} + \binom{n}{k} = \frac{n!}{k!(n-k)!}  + \binom{n}{k} = \frac{n!}{k!(n-k)!}
         </div>
         <div class="mes-ui__help">
           <button data-mesui-btn="help" class="mes-ui__tab">Help</button>
