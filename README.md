@@ -6,7 +6,6 @@ $ make init
 $ make run
 ```
 
----
 
 ## Other projects/repos related to editor sprint
 
