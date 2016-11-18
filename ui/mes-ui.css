@@ -1,0 +1,107 @@
+/* MES-UI STYLES */
+
+.mes-ui {
+  color: white;
+  max-width: 380px;
+  margin-top: 15px;
+  border-radius: 5px;
+  position: relative;
+  background: #333739;
+  transform: translateY(0), translateZ(0);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+
+  /*hide*/
+  opacity: 1;
+  transition:
+    opacity 0.5s ease-in,
+    transform 0s ease-in;
+}
+
+.mes-ui.off {
+  opacity: 0;
+  transform: translateY(-500px) translateZ(0);
+  transition:
+    opacity 0.5s ease-in,
+    transform 0s ease-in;
+}
+
+.mes-ui:after {
+  bottom: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+	border-color: rgba(136, 183, 213, 0);
+	border-bottom-color: #333739;
+	border-width: 15px;
+	margin-left: -15px;
+}
+
+.mes-ui.tleft:after {
+  left: 50%;
+}
+
+.mes-ui.tright:after {
+  left: 90%;
+}
+
+.mes-ui__tabs {
+  color: #666;
+  text-align: right;
+  padding-right: 15px;
+}
+
+.mes-ui__tab {
+  padding: 0;
+  color: #666;
+  border: none;
+  cursor: pointer;
+  background: none;
+  padding: 8px 1px 5px 1px;
+}
+
+.mes-ui__tab.active {
+  color: #456dd2;
+}
+
+.mes-ui__tab:hover {
+  color: #ddd;
+  transition: color 0.3s ease;
+}
+
+.mes-ui__tab:focus {
+  outline: none;
+  border-bottom: 1px solid #456dd2;
+}
+
+.mes-ui__simple {
+  text-align: center;
+  font-size: 24px;
+  margin: 20px 5px 15px 5px;
+}
+
+.mes-ui__help {
+  text-align: left;
+  padding: 0 0 5px 10px;
+}
+
+.mes-ui__advance {
+  display: none;
+  /*display: flex;*/
+  padding: 3px 15px 15px 15px;
+}
+
+.mes-ui__advance span {
+  color: #ccc;
+  flex-grow: 1;
+  border: none;
+  font-size: 14px;
+  width: 100%;
+  border-radius: 4px;
+  padding: 15px 20px;
+  background: #212427;
+  font-family: sans-serif;
+}

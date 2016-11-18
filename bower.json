@@ -1,0 +1,23 @@
+{
+  "name": "math-editor-sprint",
+  "homepage": "https://github.com/openstax/math-editor-sprint",
+  "authors": [
+    "@omarIthawi",
+    "@philschatz",
+    "@tomekstach",
+    "@ludekarts"
+  ],
+  "description": "Math editor for open education",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "MathJax": "components/MathJax#^2.6.0"
+  }
+}

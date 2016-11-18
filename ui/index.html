@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>UI</title>
+
+  <link rel="stylesheet" href="mes-ui.css" media="screen" title="no title">
+
+  <script type="text/javascript" src="../bower_components/MathJax/MathJax.js?config=TeX-MML-AM_CHTML" ></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      showProcessingMessages: false,
+      tex2jax: { inlineMath: [['$','$'],['\\(','\\)']] }
+    });
+  </script>
+</head>
+<body>
+
+    $ \binom{n}{k} = \frac{n!}{k!(n-k)!} $
+
+    <div data-mesui-modal="m1" class="mes-ui">
+      <div class="mes-ui__tabs">
+        <button data-mesui-btn="easy" class="mes-ui__tab">Easy</button> / <button data-mesui-btn="advance" class="mes-ui__tab active">Advance</button>
+      </div>
+      <div class="mes-ui__simple">
+        $ \binom{n}{k} = \frac{n!}{k!(n-k)!} $
+        <div class="mes-ui__help">
+          <button data-mesui-btn="help" class="mes-ui__tab">Help</button>
+        </div>
+      </div>
+      <div class="mes-ui__advance">
+        <span class="" contenteditable="true">LaTeX goes here!</span>
+      </div>
+    </div>
+
+
+
+    <script src="mes-ui.js" charset="utf-8"></script>
+</body>
+</html>
