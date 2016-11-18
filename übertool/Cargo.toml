@@ -1,0 +1,11 @@
+[package]
+name = "übertool"
+version = "0.1.0"
+authors = ["Krzysztof Mędrzycki <aiwenari@gmail.com>"]
+
+[features]
+default = ["mathml"]
+mathml = ["xmltree"]
+
+[dependencies]
+xmltree = { version = "^0.3", optional = true }
