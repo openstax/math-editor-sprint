@@ -1,0 +1,148 @@
+
+body {
+  height: 600px;
+}
+
+#eq {
+  font-size: 34px;
+  min-height: 20px;
+}
+
+/* MATHQUILL HACKS */
+.mq-editable-field, .mq-math-mode .mq-editable-field {
+    border: none;
+}
+
+.mq-root-block:focus {
+  outline: none;
+}
+
+.mq-editable-field.mq-focused {
+  border: none;
+  box-shadow: none;
+}
+
+/* MES-UI STYLES */
+
+.mes-ui {
+  display: inline-block;
+  color: #333;
+  min-width: 380px;
+  margin-top: 20px;
+  border-radius: 5px;
+  position: relative;
+  background: #dddddd;
+  transform: translateY(0), translateZ(0);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+
+  /*hide*/
+  opacity: 1;
+  transition:
+    opacity 0.3s ease-in,
+    transform 0s ease-in;
+}
+
+.mes-ui.off {
+  opacity: 0;
+  transform: translateY(-500px) translateZ(0);
+  transition:
+    opacity 0.3s ease-in,
+    transform 0s ease-in 0.3s;
+}
+
+.mes-ui:after {
+  bottom: 100%;
+  display: none;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+	border-color: rgba(136, 183, 213, 0);
+	border-bottom-color: #dddddd;
+	border-width: 15px;
+	margin-left: -15px;
+}
+
+.mes-ui[data-tip="left"]:after {
+  display: inline;
+  left: 10%;
+}
+
+.mes-ui[data-tip="right"]:after {
+  display: inline;
+  left: 90%;
+}
+
+.mes-ui[data-tip="center"]:after {
+  display: inline;
+  left: 50%;
+}
+
+.mes-ui__tabs {
+  color: #333;
+  text-align: right;
+  padding-right: 15px;
+}
+
+.mes-ui__tab {
+  padding: 0;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  background: none;
+  padding: 8px 1px 5px 1px;
+}
+
+.mes-ui__tab.active {
+  color: #456dd2;
+}
+
+.mes-ui__tab:hover {
+  color: #666;
+  transition: color 0.3s ease;
+}
+
+.mq-editable-field {
+  outline: none;
+}
+
+.mes-ui__tab:focus,
+.mes-ui__math-quil:focus {
+  outline: none;
+  border-bottom: 1px solid #456dd2;
+}
+
+.mes-ui__simple {
+  font-size: 24px;
+  text-align: center;
+  margin: 20px 15px 5px 15px;
+}
+
+
+.mes-ui__help {
+  text-align: left;
+  margin-top: 10px;
+}
+
+.mes-ui__advance {
+  padding: 3px 15px 15px 15px;
+}
+
+.mes-ui__simple.off,
+.mes-ui__advance.off {
+  display: none;
+}
+
+.mes-ui__advance span {
+  color: #333;
+  display: block;
+  border: none;
+  font-size: 14px;
+  font-style: italic;
+  border-radius: 4px;
+  padding: 15px 20px;
+  background: white;
+  font-family: sans-serif;
+}
