@@ -1,9 +1,15 @@
+
+body {
+  height: 600px;
+}
+
 /* MES-UI STYLES */
 
 .mes-ui {
+  display: inline-block;
   color: white;
-  max-width: 380px;
-  margin-top: 15px;
+  min-width: 380px;
+  margin-top: 20px;
   border-radius: 5px;
   position: relative;
   background: #333739;
@@ -13,7 +19,7 @@
   /*hide*/
   opacity: 1;
   transition:
-    opacity 0.5s ease-in,
+    opacity 0.3s ease-in,
     transform 0s ease-in;
 }
 
@@ -21,13 +27,13 @@
   opacity: 0;
   transform: translateY(-500px) translateZ(0);
   transition:
-    opacity 0.5s ease-in,
-    transform 0s ease-in;
+    opacity 0.3s ease-in,
+    transform 0s ease-in 0.3s;
 }
 
 .mes-ui:after {
   bottom: 100%;
-  left: 50%;
+  display: none;
   border: solid transparent;
   content: " ";
   height: 0;
@@ -40,12 +46,19 @@
 	margin-left: -15px;
 }
 
-.mes-ui.tleft:after {
-  left: 50%;
+.mes-ui[data-tip="left"]:after {
+  display: inline;
+  left: 10%;
 }
 
-.mes-ui.tright:after {
+.mes-ui[data-tip="right"]:after {
+  display: inline;
   left: 90%;
+}
+
+.mes-ui[data-tip="center"]:after {
+  display: inline;
+  left: 50%;
 }
 
 .mes-ui__tabs {
@@ -78,28 +91,31 @@
 }
 
 .mes-ui__simple {
-  text-align: center;
   font-size: 24px;
-  margin: 20px 5px 15px 5px;
+  text-align: center;
+  margin: 20px 15px 5px 15px;
 }
 
 .mes-ui__help {
   text-align: left;
-  padding: 0 0 5px 10px;
+  margin-top: 10px;
 }
 
 .mes-ui__advance {
-  display: none;
-  /*display: flex;*/
   padding: 3px 15px 15px 15px;
+}
+
+.mes-ui__simple.off,
+.mes-ui__advance.off {
+  display: none;
 }
 
 .mes-ui__advance span {
   color: #ccc;
-  flex-grow: 1;
+  display: block;
   border: none;
   font-size: 14px;
-  width: 100%;
+
   border-radius: 4px;
   padding: 15px 20px;
   background: #212427;

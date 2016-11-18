@@ -16,25 +16,35 @@
 </head>
 <body>
 
-    $ \binom{n}{k} = \frac{n!}{k!(n-k)!} $
+    <div id="eq">$ \binom{n}{k} = \frac{n!}{k!(n-k)!} $</div>
 
-    <div data-mesui-modal="m1" class="mes-ui">
+    <div data-mesui-modal="m1" class="mes-ui off" data-tip="left">
       <div class="mes-ui__tabs">
-        <button data-mesui-btn="easy" class="mes-ui__tab">Easy</button> / <button data-mesui-btn="advance" class="mes-ui__tab active">Advance</button>
+        <button data-mesui-btn="easy" class="mes-ui__tab">Easy</button> / <button data-mesui-btn="advance" class="mes-ui__tab">Advance</button>
       </div>
       <div class="mes-ui__simple">
-        $ \binom{n}{k} = \frac{n!}{k!(n-k)!} $
+        <div class="mes-ui__math-quil">
+          $ \binom{n}{k} = \frac{n!}{k!(n-k)!} + \binom{n}{k} = \frac{n!}{k!(n-k)!}  + \binom{n}{k} = \frac{n!}{k!(n-k)!}  $
+        </div>
         <div class="mes-ui__help">
           <button data-mesui-btn="help" class="mes-ui__tab">Help</button>
         </div>
       </div>
-      <div class="mes-ui__advance">
-        <span class="" contenteditable="true">LaTeX goes here!</span>
+      <div class="mes-ui__advance off">
+        <span contenteditable="true">LaTeX goes here!</span>
       </div>
     </div>
 
-
-
     <script src="mes-ui.js" charset="utf-8"></script>
+
+    <script type="text/javascript">
+      MathUI.init();
+
+      const eq = document.getElementById('eq');
+      eq.onclick = function () {
+        MathUI.show();
+      }
+
+    </script>
 </body>
 </html>
