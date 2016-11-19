@@ -146,3 +146,10 @@ body {
   background: white;
   font-family: sans-serif;
 }
+
+.equation-contents {
+  display: none !important;
+  height: 0;
+  overflow: none;
+  opacity: 0;
+}

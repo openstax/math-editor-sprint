@@ -1,73 +1,82 @@
 ;(function ($) {
-  console.log('I am here!', new Date());
+  window.InitOmarHack = function () {
+    console.log('I am here!', new Date());
 
-  window.JaxToML = {  // Make it global
-      toMathML: function(jax, callback) {
-          var mml;
-          try {
-              mml = jax.root.toMathML("");
-          } catch (err) {
-              if (!err.restart) {
-                  throw err
-              } // an actual error
-              return MathJax.Callback.After([JaxToML.toMathML, jax, callback], err.restart);
-          }
-          MathJax.Callback(callback)(mml);
-      },
-      convert: function(AjaxText, callback) {
-          var tempDiv = $('<div style="width:455px;height:450px:border-width:thick;border-style:double;"></div>').appendTo("body").html(AjaxText)[0];
-          MathJax.Hub.Queue(["Typeset", MathJax.Hub, tempDiv]); //first place in Q
-          MathJax.Hub.Queue(function() { //wait for a callback to be fired
-              var jax = MathJax.Hub.getAllJax(tempDiv);
-              for (var i = 0; i < jax.length; i++) {
-                  JaxToML.toMathML(jax[i], function(mml) { //alert(jax[i].originalText + "\n\n=>\n\n"+ mml);
-                      AjaxText = AjaxText.replace(jax[i].originalText, mml);
-                  });
-              }
-              $(tempDiv).remove();
-              AjaxText = AjaxText.replace(/\(/g, ""); //notice this escape character for ( - i.e it has to be \( , know why it is beacuse JS will treat ) or ( as end/begin of function as there are no quotes here.
-              AjaxText = AjaxText.replace(/\)/g, ""); //notice this escape character for ) - i.e it has to be \)
-              AjaxText = AjaxText.replace(/\\/g, "");
-              callback(AjaxText);
-          });
-      }
-  };
+    // TODO: Handle more than one equation.
+    var $equation = $('.equation:eq(0)');
 
-  JaxToML.convert('x=\\sqrt{y}', function (mml) {
-    console.log(mml);
-  });
-
-  var $equations = $('.equation');
-  $equations.off('click');
-
-  $equations.on('click', function(e) {
-    var $equation = $(this);
     var firstTime = false;
+    $('.equation-contents').hide();
 
-    if (!$equation.find('textarea').length) {
+    var inputTeX = 'y = a + b * c^2';  // TODO: Get the latex
+
+    if (!$equation.find('div.eq').length) {
       $equation.prepend($(
-        '<textarea /> <button>save</button> '
-        + '<script type="math/tex"></script>'
+        '<div id="eq">' + inputTeX + '</div> '
+        + '<button>save</button>'
       ));
       firstTime = true;
     }
 
-    var $text = $equation.find('textarea');
     var $save = $equation.find('button');
-    // var $mml = 
+    var eq = document.getElementById('eq');
 
     if (firstTime) {
-      $text.on('click', function (e) {
+      MathUI.init(eq);
+      eq.onclick = function (e) {
         e.stopPropagation();
-      });
+        MathUI.show();
+      }
 
       $save.on('click', function (e) {
         e.stopPropagation();
       });
     }
 
-    e.stopPropagation();
-  });
 
+    $equation.off('click');
+    $equation.on('click', function(e) {
+      e.stopPropagation();
+    });
+  };
+
+  if (!window.OmarInitiHackIsActive) {
+    window.OmarInitiHackIsActive = true;
+
+    jQuery.getScript('http://localhost:8000/bower_components/jQuery/jquery.min.js', function () {
+      jQuery.getScript('http://localhost:8000/ui/mathquill.min.js', function () {
+        jQuery.getScript('http://localhost:8000/ui/render.js', function () {
+          $('body').append(
+            ' <div data-mesui-modal="m1" class="mes-ui off" data-tip="left"> '
+              + ' <div class="mes-ui__tabs"> '
+                + ' <button data-mesui-btn="easy" class="mes-ui__tab active">Easy</button> / <button data-mesui-btn="advance" class="mes-ui__tab">Advance</button> '
+              + ' </div> '
+              + ' <div class="mes-ui__simple"> '
+                + ' <div class="mes-ui__math-quil"> '
+                + ' </div> '
+                + ' <div class="mes-ui__help"> '
+                  + ' <button data-mesui-btn="help" class="mes-ui__tab">Help</button> '
+                + ' </div> '
+              + ' </div> '
+              + ' <div class="mes-ui__advance off"> '
+                + ' <span class="mes-ui__latex" contenteditable="true"></span> '
+              + ' </div> '
+            + ' </div> '
+          );
+
+          jQuery.getScript('http://localhost:8000/ui/mes-ui.js', function () {
+            window.OmarRendererReady = true;
+            InitOmarHack();
+          });
+        });
+      });
+    });
+  }
+
+  ;;
+
+  if (window.OmarRendererReady) {
+    InitOmarHack();
+  }
 
 }(jQuery));
