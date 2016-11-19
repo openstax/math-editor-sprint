@@ -37,35 +37,31 @@
     console.log(mml);
   });
 
-  var $equations = $('.equation');
-  $equations.off('click');
+  var $equation = $('.equation:eq(0)');
+  $equation.off('click');
 
-  $equations.on('click', function(e) {
-    var $equation = $(this);
-    var firstTime = false;
+  var firstTime = false;
 
-    if (!$equation.find('textarea').length) {
-      $equation.prepend($(
-        '<textarea /> <button>save</button> '
-        + '<script type="math/tex"></script>'
-      ));
-      firstTime = true;
-    }
+  if (!$equation.find('textarea').length) {
+    $equation.prepend($(
+      '<iframe style="border: 0;width: 100%;height: 180px;" scrolling="no" src="http://localhost:8000/ui/"></iframe>'
+    ));
 
-    var $text = $equation.find('textarea');
-    var $save = $equation.find('button');
-    // var $mml = 
+    firstTime = true;
+  }
 
-    if (firstTime) {
-      $text.on('click', function (e) {
-        e.stopPropagation();
-      });
+  var $save = $equation.find('button');
+  // var $mml =
 
-      $save.on('click', function (e) {
-        e.stopPropagation();
-      });
-    }
+  if (firstTime) {
+    $('.equation-contents').hide();
 
+    $save.on('click', function (e) {
+      e.stopPropagation();
+    });
+  }
+
+  $equation.on('click', function(e) {
     e.stopPropagation();
   });
 
